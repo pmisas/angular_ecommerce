@@ -2,18 +2,34 @@
     height: 80px; 
     display: flex ;
     justify-content:  space-between;
-    padding-left: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
     padding-top: 5px;
 }
 
-img{
-    margin-left: 20px;
-    height: 40px; 
+.cart{
     position: absolute; 
-    right: 2%; 
+    right: 3%; 
+}
+
+img{
+    height: 40px; 
     margin-top: 3px;
     
 }
+
+.badge{
+    position: absolute; 
+    margin-left: 25px;
+    font-size: 11px;
+    color: #b71c1c;
+    margin-top: 2px;
+    max-height: 22px;
+    min-width: 10px;
+    background-color: #ffcdd2f3;
+    border-radius: 30%;
+}
+
 img:hover{
     cursor: pointer;
 }
