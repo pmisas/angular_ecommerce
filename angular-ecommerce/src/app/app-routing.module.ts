@@ -5,6 +5,8 @@ import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 const routes: Routes = [{
   path:'',
   component:SkeletonComponent,
+  loadChildren: ()=> 
+    import ('@modules/ecommerce/ecommerce.module').then((m)=>m.EcommerceModule)
 }];
 
 @NgModule({
