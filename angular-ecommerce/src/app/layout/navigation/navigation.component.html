@@ -6,9 +6,9 @@
             ECOMMERCE
         </div>
         <div>
-            <a class="waves-effect waves-teal btn-flat">Productos</a>
-            <a class="waves-effect waves-teal btn-flat">Ordenes</a>
-            <a class="waves-effect waves-teal btn-flat">LOGOUT</a>
+            <!--<a class="waves-effect waves-teal btn-flat">Productos</a>
+            <a class="waves-effect waves-teal btn-flat">Ordenes</a>-->
+            <a class="waves-effect waves-teal btn-flat"  href="http://localhost:4200/auth">LOGIN</a>
         </div>
         
         
@@ -16,14 +16,14 @@
     <div class="nav-content white" style="display: flex; justify-content: space-between;">
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="tabs hide-on-med-and-down">
-            <li class="tab"><a href="http://localhost:4200">INICIO</a></li>
-            <li class="tab"><a href="#test2">HOGAR</a></li>
-            <li class="tab"><a href="#test3">ELECTRONICA</a></li>
-            <li class="tab"><a href="#test4">BELLEZA</a></li>
-            <li class="tab"><a href="#test5">SALUD</a></li>
-            <li class="tab"><a href="#test6">NIÑOS</a></li>
-            <li class="tab"><a href="#test7">TRANSPORTE</a></li>
-            <li class="tab"><a href="#test8">ENTRETENIMIENTO</a></li>
+            <li class="tab"><a [routerLink]="['/home']">INICIO</a></li>
+            <li class="tab"><a [routerLink]="['/home/hogar']">HOGAR</a></li>
+            <li class="tab"><a [routerLink]="['/home/electronica']">ELECTRONICA</a></li>
+            <li class="tab"><a [routerLink]="['/home/belleza']">BELLEZA</a></li>
+            <li class="tab"><a [routerLink]="['/home/salud']">SALUD</a></li>
+            <li class="tab"><a [routerLink]="['/home/niños']">NIÑOS</a></li>
+            <li class="tab"><a [routerLink]="['/home/transporte']">TRANSPORTE</a></li>
+            <li class="tab"><a [routerLink]="['/home/entretenimeinto']">ENTRETENIMIENTO</a></li>
         </ul>
         <div class="cart">
             <span class="badge" style="margin-right: 4.5%;">0</span>
