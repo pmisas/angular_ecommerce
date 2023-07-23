@@ -1,9 +1,10 @@
 <div class="container-fluid" style="background-color: #ffebee;">
 
-    
+    <app-carousel></app-carousel>
+
     <div class="container-fluid row" style=" width: 100%;">
         <div class="col-12">
-            <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">I T E M S</h5>
+            <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">C A T A L O G O</h5>
         </div>
         <ng-container *ngIf="load">
             <app-cards *ngFor="let item of items" [data]="item" class="col-12 col-md-12 col-xl-12" style="max-width: calc(100vh / 2.5);"></app-cards>

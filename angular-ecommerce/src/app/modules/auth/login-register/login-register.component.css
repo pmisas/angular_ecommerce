@@ -1,0 +1,21 @@
+.small-icon {
+  font-size: 25px; 
+  padding-top: 5px;
+}
+
+.height-fill {
+  min-height: 410px; 
+}
+
+.custom-row-style {
+  margin: 20px auto; /* Ajusta el valor de '20px' según el espacio deseado */
+}
+
+.custom-h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #007bff; /* Azul Bootstrap por defecto, puedes cambiarlo al color que prefieras */
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
