@@ -1,18 +1,50 @@
 <div class="container-fluid" style="background-color: #ffebee;">
+    <ng-container *ngIf="load">
 
-    <app-carousel></app-carousel>
+        <app-carousel></app-carousel>
 
-    <div class="container-fluid row" style=" width: 100%;">
-        <div class="col-12">
-            <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">C A T A L O G O</h5>
+        <!--
+            <div class="div" style="width: 100%; min-height: 40%; margin-top: 20px; background-color: #ffffff; border-radius: 20px; display: flex;">
+            <div class="container-fluid row" style=" width: 100%;">
+                <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center; margin-top: 5px;">R E C O M E N D A D O S</h5>
+                <div class="col">
+                    <img src="assets/images/home/vestido.png" style="width: 150px;">
+                </div>
+                <div class="col">
+                    <img src="assets/images/home/muebles.png" style="width: 150px;">
+                </div>
+                <div class="col">
+                    <img src="assets/images/home/gaming.png" style="width: 150px;">
+                </div>
+                <div class="col">
+                    <img src="assets/images/home/autos.png" style="width: 150px;">
+                </div>
+                <div class="col">
+                    <img src="assets/images/home/juguetes.png" style="width: 150px;">
+                </div>
+                <div class="col">
+                    <img src="assets/images/home/zapatos.png" style="width: 150px;">
+                </div>
+            </div>
         </div>
-        <ng-container *ngIf="load">
-            <app-cards *ngFor="let item of items" [data]="item" class="col-12 col-md-12 col-xl-12" style="max-width: calc(100vh / 2.5);"></app-cards>
-        </ng-container>
+        -->
+    <!--
+        <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">H O G A R</h5>
+        <div class="container-fluid row" style=" width: 100%;">
+            <app-cards *ngFor="let item of items" [data]="item" class="col 12 m12  s12" style="max-width: calc(100vh / 2);"></app-cards>
             
-    
+        </div>
 
-    </div>
+        <app-cards *ngFor="let item of items" [data]="item" ></app-cards>
+    -->
+
+    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center; margin-bottom: auto;">H O G A R</h5>
+    <app-last-cards [data]="items"></app-last-cards>
+
+    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">E L E C T R O N I C A</h5>
+    <app-last-cards [data]="items"></app-last-cards>
+
+    </ng-container>
     
 
 </div>

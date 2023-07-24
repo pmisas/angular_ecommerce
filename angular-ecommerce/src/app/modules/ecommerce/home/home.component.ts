@@ -19,17 +19,16 @@ export class HomeComponent implements OnInit{
   load = false
 
   ngOnInit(): void {
+
     this.itemService.getItems().subscribe( r =>{
       if (r.error===false){
         this.items=r.data
       }
       console.log(this.items)
     })
-    
     this.load=true
-    //var elems = document.querySelectorAll('.carousel');
-    //var instances = M.Carousel.init(elems, this.options);
-  
+    
+    
   
   
   }

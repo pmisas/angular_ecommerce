@@ -1,0 +1,32 @@
+<section class="product">
+    <div class="container-fluid">
+        <div class="slider-wrap">
+            <div class="slider-main">
+                <div class="items" *ngFor="let item of data">
+                    <div class="card">
+                        <div class="card_img">
+                            <img src="assets/images/home/1s.png">
+                        </div>
+                        <div class="card_body">
+                            <h6 class="product_name">{{item.name}}</h6>
+                                <div class="div" style="display: flex; justify-content: center;">
+                                    <p class="product_symbol">$</p>
+                                    <p class="product_price">{{item.price}}</p>
+                                    <div class="btn-flat waves-effect border-button" >Shop now</div>
+                                    <i class="material-icons">more_vert</i>
+                                </div>
+                        </div>
+                        <div class="card_buttons"></div>
+                        
+                    </div>   
+                </div>
+            </div>
+            <div class="button-area">
+                <i id="prev" class="material-icons" appPrev>chevron_left</i>
+                <i id="next" class="material-icons" appNext>chevron_right</i>
+            </div>
+        </div>
+    </div>
+</section>
+
+

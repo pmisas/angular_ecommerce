@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import * as fromComponents from './components';
+import { NextDirective } from 'app/directives/next/next.directive';
+import { PrevDirective } from 'app/directives/prev/prev.directive';
 
 @NgModule({
   imports: [
@@ -13,10 +15,14 @@ import * as fromComponents from './components';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    
 
     CommonModule
   ],
-  declarations: [...fromComponents.components],
+  declarations: [...fromComponents.components,
+    NextDirective,
+    PrevDirective,
+  ],
   exports: [
     FormsModule,
     ReactiveFormsModule,

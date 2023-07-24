@@ -9,7 +9,7 @@ import { EcommerceRoutingModule } from './ecommerce-routing.module';
 @NgModule({
   declarations: [
     HomeComponent,
-    CategoryComponent
+    CategoryComponent,
   ],
   imports: [
     SharedModule,

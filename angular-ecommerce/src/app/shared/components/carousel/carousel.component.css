@@ -1,0 +1,9 @@
+/* Estilos para el carrusel */
+.carousel.carousel-slider {
+    overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+.carousel.carousel-slider .carousel-item img {
+  height:auto; /* Establece la altura de las imágenes a "auto" para que mantengan su relación de aspecto original */
+  max-height: 100vh; /* Establece la altura máxima de las imágenes para que no se desborden en pantallas pequeñas */
+}
