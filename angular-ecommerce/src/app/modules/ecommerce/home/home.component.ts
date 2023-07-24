@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsService } from '@data/services/api/items.service';
-import { IItems } from '@data/interfaces/items.metadata'
+import { ICategories, ICategoriesList, IItems } from '@data/interfaces/items.metadata'
 
 declare const M: any;
 @Component({
@@ -15,12 +15,13 @@ export class HomeComponent implements OnInit{
   ){}
 
   //options = {fullWidth: true};
-  items: IItems[] = []
+  public items!: ICategoriesList; 
+
   load = false
 
   ngOnInit(): void {
 
-    this.itemService.getItems().subscribe( r =>{
+    this.itemService.getCategories().subscribe( r =>{
       if (r.error===false){
         this.items=r.data
       }

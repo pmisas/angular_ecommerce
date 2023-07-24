@@ -7,3 +7,19 @@ export interface IItems{
     image:string;
     name:string;
 }
+
+export interface ICategories{
+    id:number;
+    name: string;
+    items:IItems;
+}
+
+export interface ICategoriesList{
+    home:ICategories;
+    electronic:ICategories;
+    beauty:ICategories;
+    health:ICategories;
+    kids:ICategories;
+    transport:ICategories;
+    entertainment:ICategories
+}

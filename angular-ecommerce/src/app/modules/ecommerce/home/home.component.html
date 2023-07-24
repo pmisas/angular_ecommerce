@@ -37,12 +37,27 @@
 
         <app-cards *ngFor="let item of items" [data]="item" ></app-cards>
     -->
-
-    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center; margin-bottom: auto;">H O G A R</h5>
-    <app-last-cards [data]="items"></app-last-cards>
+    
+        <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center; margin-bottom: auto;">H O G A R</h5>
+    <app-last-cards [data]="items.home.items"></app-last-cards>
 
     <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">E L E C T R O N I C A</h5>
-    <app-last-cards [data]="items"></app-last-cards>
+    <app-last-cards [data]="items.electronic.items"></app-last-cards>
+
+    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">B E L L E Z A</h5>
+    <app-last-cards [data]="items.beauty.items"></app-last-cards>
+
+    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">S A L U D</h5>
+    <app-last-cards [data]="items.health.items"></app-last-cards>
+    
+    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">N I Ñ O S</h5>
+    <app-last-cards [data]="items.kids.items"></app-last-cards>
+
+    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">T R A N S P O R T E</h5>
+    <app-last-cards [data]="items.transport.items"></app-last-cards>
+
+    <h5 class="display-4" style=" font-weight: 300; color: black; text-align: center;">E N T R E T E N I M I E N T O</h5>
+    <app-last-cards [data]="items.entertainment.items"></app-last-cards>
 
     </ng-container>
     

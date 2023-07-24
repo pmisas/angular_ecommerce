@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IItems } from '@data/interfaces/items.metadata';
+import { ICategories, IItems } from '@data/interfaces/items.metadata';
 
 @Component({
   selector: 'app-last-cards',
@@ -8,8 +8,7 @@ import { IItems } from '@data/interfaces/items.metadata';
 })
 export class LastCardsComponent implements OnInit{
   
-  @Input() data:  IItems[] = []
-
+  @Input() data: any
   ngOnInit(): void {
   }
 

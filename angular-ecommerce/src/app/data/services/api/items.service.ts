@@ -13,6 +13,24 @@ export class ItemsService {
     private router: Router,
   ) { }
 
+  getCategories():Observable<any>{
+    const response= {error:true, message:'No tienes proyecto', data:null}
+    return this.http.get<{error:boolean, message:string, data:any}>("http://localhost:4000/public/categories")
+    .pipe(
+      map(r =>{
+        console.log(r)
+        response.error=r.error,
+        response.data=r.data,
+        response.message=r.message
+        if(response.error==false){
+          return response
+        }else{
+          return null
+        }
+      })
+    )
+  }
+
     //traer todos
     getItems():Observable<any>{
       const response= {error:true, message:'No tienes proyecto', data:null}

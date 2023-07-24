@@ -10,20 +10,26 @@ const routes: Routes = [
     import ('@modules/ecommerce/ecommerce.module').then((m)=>m.EcommerceModule)
   },
   {
-    path:'auth',
-    component:SkeletonComponent,
-    loadChildren: ()=> 
-      import ('@modules/auth/auth.module').then((m)=>m.AuthModule)
+  path:'auth',
+  component:SkeletonComponent,
+  loadChildren: ()=> 
+    import ('@modules/auth/auth.module').then((m)=>m.AuthModule)
   },
   {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
+  path:'user',
+  component:SkeletonComponent,
+  loadChildren: ()=> 
+    import ('@modules/user/user.module').then((m)=>m.UserModule)
   },
   {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
+  path: '',
+  redirectTo: 'home',
+  pathMatch: 'full'
+  },
+  {
+  path: '**',
+  redirectTo: 'home',
+  pathMatch: 'full'
   },
 ];
 
