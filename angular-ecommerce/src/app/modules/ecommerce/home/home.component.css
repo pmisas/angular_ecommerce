@@ -5,3 +5,8 @@ app-cards {
 h5{
     margin-bottom: 0px;
 }
+
+.container-fluid{
+    align-items: center;
+    justify-content: center;
+}

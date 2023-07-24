@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit{
   ){}
 
   //options = {fullWidth: true};
-  public items!: ICategoriesList; 
+  public items!: any; 
 
   load = false
 
@@ -25,9 +25,10 @@ export class HomeComponent implements OnInit{
       if (r.error===false){
         this.items=r.data
       }
-      console.log(this.items)
+      console.log(this.items.home.items)
+      this.load=true
     })
-    this.load=true
+    
     
     
   
