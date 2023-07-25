@@ -11,7 +11,7 @@
                         <input type="text" id="email" class="form-control validate"  [class.invalid]="loginForm.controls['email'].touched && loginForm.hasError('required','email') || loginForm.controls['email'].touched && loginForm.hasError('pattern','email') || loginForm.controls['email'].hasError('customError')"  formControlName="email" (click)="onSingin('email')" [class.error]="loginForm.controls['email'].invalid && loginForm.hasError('required','email')" placeholder="" >
                         <small *ngIf="loginForm.controls['email'].touched && loginForm.hasError('required','email')" class="helper-text">*Email es requerido</small>
                         <small *ngIf="loginForm.controls['email'].touched && loginForm.hasError('pattern','email')" class="helper-text">*Ingrese un email valido</small>
-                        <small *ngIf="loginForm.controls['email'].hasError('customError')" class="helper-text">*Email invalido</small>
+                        <small *ngIf="loginForm.controls['email'].hasError('customError')" class="helper-text">*Email no encontrado</small>
                     </div>
 
                     <div class="input-field col s12">
@@ -50,35 +50,37 @@
                 <div class="input-field col m8 s12">
                     <i class="material-icons grey-text prefix small-icon">face</i>
                     <label for="name">Nombre*:</label>
-                    <input type="text" id="name" class="form-control validate" formControlName="name" (click)="onSingup('name')" [class.error]="registerForm.controls['name'].touched && registerForm.hasError('required','name')" placeholder="">
-                    <small *ngIf="registerForm.controls['name'].touched && registerForm.hasError('pattern','name')" class="helper-text">*Nombre entre 5 y 30 caracteres</small>
+                    <input type="text" id="name" class="form-control validate" [class.invalid]="registerForm.controls['name'].touched && registerForm.hasError('required','name') || registerForm.controls['name'].touched && registerForm.hasError('minlength','name') || registerForm.controls['name'].touched && registerForm.hasError('maxlength','name')" formControlName="name" (click)="onSingup('name')" [class.error]="registerForm.controls['name'].touched && registerForm.hasError('required','name')" placeholder="">
+                    <small *ngIf="registerForm.controls['name'].touched && registerForm.hasError('minlength','name')" class="helper-text">*Nombre con minimo 5 caracteres</small>
+                    <small *ngIf="registerForm.controls['name'].touched && registerForm.hasError('maxlength','name')" class="helper-text">*Nombre con maximo 30 caracteres</small>
                 </div>
                 
                 
                 <div class="input-field col m6 s12">
                     <i class="material-icons grey-text prefix small-icon">email</i>
                     <label for="email1">Email*:</label>
-                    <input type="email" id="email1" class="form-control validate" formControlName="email" (click)="onSingup('email')" [class.error]="registerForm.controls['email'].touched && registerForm.hasError('required','email')" placeholder="" >
+                    <input type="email" id="email1" class="form-control validate emailcol" [class.invalid]="registerForm.controls['email'].touched && registerForm.hasError('required','email') || registerForm.controls['email'].hasError('customError')" formControlName="email" (click)="onSingup('email')" [class.error]="registerForm.controls['email'].touched && registerForm.hasError('required','email')" placeholder="" >
+                    <small id="unique" *ngIf="registerForm.controls['email'].hasError('customError')" class="helper-text">*Email en uso, intente con otro</small>
                 </div>
                 
 
                 <div class="input-field col m6 s12">
                     <i class="material-icons grey-text prefix small-icon">lock</i>
                     <label for="pass">Contraseña*:</label>
-                    <input type="password" id="pass" class="form-control validate" formControlName="password" (click)="onSingup('password')" [class.error]="registerForm.controls['password'].touched && registerForm.hasError('required','password')" placeholder="">
+                    <input type="password" id="pass" class="form-control validate emailcol" [class.invalid]="registerForm.controls['password'].touched && registerForm.hasError('required','password')" formControlName="password" (click)="onSingup('password')" [class.error]="registerForm.controls['password'].touched && registerForm.hasError('required','password')" placeholder="">
                 </div>
 
 
                 <div class="input-field col m6 s12">
                     <i class="material-icons grey-text prefix small-icon">location_city</i>
                     <label for="city">Ciudad*:</label>
-                    <input type="text" id="city" class="form-control validate" formControlName="city" (click)="onSingup('city')" [class.error]="registerForm.controls['city'].touched && registerForm.hasError('required','city')" placeholder="" >
+                    <input type="text" id="city" class="form-control validate" formControlName="city" [class.invalid]="registerForm.controls['city'].touched && registerForm.hasError('required','city')" (click)="onSingup('city')" [class.error]="registerForm.controls['city'].touched && registerForm.hasError('required','city')" placeholder="" >
                 </div>
                 
                 <div class="input-field col m6 s12">
                     <i class="material-icons grey-text prefix small-icon">location_on</i>
                     <label for="adress">Direccion*:</label>
-                    <input type="text" id="adress" class="form-control validate" formControlName="adress" (click)="onSingup('adress')" [class.error]="registerForm.controls['adress'].touched && registerForm.hasError('required','adress')" placeholder="" >
+                    <input type="text" id="adress" class="form-control validate" formControlName="adress" [class.invalid]="registerForm.controls['adress'].touched && registerForm.hasError('required','adress')" (click)="onSingup('adress')" [class.error]="registerForm.controls['adress'].touched && registerForm.hasError('required','adress')" placeholder="" >
                 </div>
                 <div class="col register">
                     <div class="btns">

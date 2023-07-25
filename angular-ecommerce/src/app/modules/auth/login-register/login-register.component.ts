@@ -39,7 +39,7 @@ export class LoginRegisterComponent {
     })
 
     this.registerForm = this.formBuilder.group ({
-      name: [ , [Validators.required,  Validators.pattern(/^[[a-zA-Z ]{5,30}$/)]],
+      name: [ , [Validators.required,  Validators.minLength(5), Validators.maxLength(30)]],
       email: [ , [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]] ,
       password: [ , Validators.required],
       rol: [ , Validators.required],
@@ -107,8 +107,21 @@ export class LoginRegisterComponent {
   autenticateRegister() {
     this.registerForm.markAllAsTouched()
     if(this.registerForm.valid){
-      if(this.registerForm.controls['is_Admin'].value=== 'true'){
-        this.registerForm.controls['is_Admin'].setValue(true)
+      this.registerSubscribe = this.authService.register(this.registerForm.value).subscribe(r=>{
+        if(r.error){
+          if(r.data===400){
+            this.registerForm.controls['email'].setErrors({ customError: true })
+          }
+        }else{
+          console.log("exitoso")
+        }
+      })
+    }
+    /*
+    if(this.registerForm.valid){
+    
+      if(this.registerForm.controls['rol'].value === 'vendedor'){
+        this.registerForm.controls['rol'].setValue(true)
         this.registerSubscribe =this.authService.register(this.registerForm.value).subscribe(r=>{
           if(r.error){
             this.registerError=r.message
@@ -128,6 +141,7 @@ export class LoginRegisterComponent {
     } else {
       this.registerError= "*Formulario invalido. llene los espacios que se piden"
     }
+    */
   }
 
   ngOnDestroy(){

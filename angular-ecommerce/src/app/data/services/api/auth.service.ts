@@ -75,7 +75,7 @@ export class AuthService {
       roles: roles,
       address: data.city + data.adress,
     }
-    const response= {error:true, message:'No tienes proyecto', data:null}
+    const response= {error:true, message:'error inesperado', data:null}
     return this.http.post<{error:boolean, message:string, data:any}>("http://localhost:4000/auth/register", newData)
     .pipe(
       map(r =>{
@@ -84,7 +84,14 @@ export class AuthService {
         response.data=r.data,
         response.message=r.message
         return response
-      })
+      }),
+      catchError( e =>{
+        response.data=e.status
+        if(e.status===400){
+          response.message="Email en uso, intente con otro"
+        }
+        return of (response);
+      }),
     )}
 
     logout(){
