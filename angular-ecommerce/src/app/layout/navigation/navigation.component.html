@@ -6,8 +6,8 @@
             ECOMMERCE
         </div>
         <div>
-            <a *ngIf="isLoggedIn" class="waves-effect waves-red btn-flat">Productos</a>
-            <a *ngIf="isLoggedIn" class="waves-effect waves-red btn-flat">Ordenes</a>
+            <a *ngIf="isLoggedIn" class="waves-effect waves-red btn-flat" href="http://localhost:4200/user/items">Productos</a>
+            <a *ngIf="isLoggedIn" class="waves-effect waves-red btn-flat" href="http://localhost:4200/user/order">Ordenes</a>
             <a *ngIf="isLoggedIn" class="waves-effect waves-red btn-flat"  (click)="logout()">LOGOUT</a>
             <a *ngIf="!isLoggedIn" class="waves-effect waves-red btn-flat"  href="http://localhost:4200/auth">LOGIN</a>
         </div>

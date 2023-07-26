@@ -8,21 +8,28 @@ declare const M: any;
   styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit{
-  isLoggedIn = false;
+  public isLoggedIn:boolean = false;
+
+  public userData: any; // Variable para almacenar los datos del usuario
 
   constructor(
-    private authService: AuthService){
+    public authService: AuthService){
   }
 
-  ngOnInit() {
-    this.authService.isLoggedIn.subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
-    }),
-    // Inicializa el sidenav de Materialize
-    //document.addEventListener('DOMContentLoaded', function() {
-    //  const elems = document.querySelectorAll('.sidenav');
-    //  M.Sidenav.init(elems);
-    //});
+  ngOnInit()  {
+    // Suscribirse al BehaviorSubject para obtener el valor de isLoggedIn
+    this.authService.isLoggedIn.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+      // Si el usuario está logueado, obtener los datos del usuario
+      if (isLoggedIn) {
+        this.authService.getUserData().subscribe(
+          data => {
+            this.userData = data; // Asignar los datos del usuario a la variable userData
+            // Aquí puedes distribuir los datos del usuario a los diferentes componentes según sea necesario
+          }
+        );
+      }
+    });
     M.AutoInit();
   }
 

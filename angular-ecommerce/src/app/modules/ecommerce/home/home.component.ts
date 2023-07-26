@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit{
     private  itemService:ItemsService,
   ){}
 
-  //options = {fullWidth: true};
   public items!: any; 
 
   load = false
@@ -25,7 +24,6 @@ export class HomeComponent implements OnInit{
       if (r.error===false){
         this.items=r.data
       }
-      console.log(this.items.home.items)
       this.load=true
     })
     

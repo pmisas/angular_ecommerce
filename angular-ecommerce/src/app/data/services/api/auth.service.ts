@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 import { IresponseValidation } from '../iresponse-validation.metadata';
@@ -11,19 +11,45 @@ import { Token } from '@angular/compiler';
   providedIn: 'root'
 })
 export class AuthService {
-  public currentUser: BehaviorSubject<IcompleteUser | null> 
-  public nameUserLS = 'currentUserEcommerce'
+  
+  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isLoggedIn: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
   constructor(
     private http:HttpClient,
     private router:Router
-  ) {this.currentUser = new BehaviorSubject(
-    JSON.parse(localStorage.getItem(this.nameUserLS)!)
-  ); }
+  ) {
+    const token = localStorage.getItem('token');
+    this.isLoggedInSubject.next(!!token); // !! convierte el valor a booleano (true si hay token, false si no) 
+  }
 
-  
-  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isLoggedIn: Observable<boolean> = this.isLoggedInSubject.asObservable();
+  /*
+    Behavior subject para saber si el usuario esta logueado
+  */
+
+  isLoggedInValue():Observable<boolean> {
+    console.log(this.isLoggedIn,'service')
+    return this.isLoggedIn;
+  }
+
+  getUserData():Observable<IresponseValidation>{
+    // Obtén el token del local storage o de donde lo tengas almacenado
+    const token = localStorage.getItem('token');
+
+    // Crea las cabeceras con el token
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    const response= {error:true, message:'Error Inesperado', data:null}
+    return this.http.get<{error:boolean, message:string, data:any}>("http://localhost:4000/auth/users", {headers})
+    .pipe(
+      map(r =>{
+        console.log(r)
+        response.error=r.error,
+        response.data=r.data,
+        response.message=r.message
+        return response;
+      })
+    )
+  }
 
   login(data: {
     email: string;
@@ -37,8 +63,7 @@ export class AuthService {
       response.data=r.data,
       response.message=r.message
       if(!r.error){
-        localStorage.setItem('token', r.data.token)
-        this.currentUser.next(r.data)
+        localStorage.setItem('token', r.data.token);
         this.isLoggedInSubject.next(true);
         this.router.navigateByUrl("/home");
       }
@@ -79,10 +104,12 @@ export class AuthService {
     return this.http.post<{error:boolean, message:string, data:any}>("http://localhost:4000/auth/register", newData)
     .pipe(
       map(r =>{
-        console.log(r)
         response.error=r.error,
         response.data=r.data,
         response.message=r.message
+        if(!r.error){
+          this.router.navigateByUrl("/home");
+        }
         return response
       }),
       catchError( e =>{
@@ -94,10 +121,9 @@ export class AuthService {
       }),
     )}
 
-    logout(){
-    localStorage.removeItem('token');
-    this.currentUser.next(null)
-    this.isLoggedInSubject.next(false);
-    }
+  logout(){
+  localStorage.removeItem('token');
+  this.isLoggedInSubject.next(false);
+  }
   
 }
