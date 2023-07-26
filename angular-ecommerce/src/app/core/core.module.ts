@@ -8,12 +8,12 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   imports: [HttpClientModule],
-  //providers: [
-  //  {
-  //    provide:HTTP_INTERCEPTORS,
-  //    useClass: JwtInterceptor,
-  //    multi: true
-  //  }
-  //]
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ]
 })
 export class CoreModule { }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, throwError } from 'rxjs';
 import { IresponseValidation } from '../iresponse-validation.metadata';
 import { Iregister } from '../auth-register.metadata';
 import { IcompleteUser } from '@data/interfaces/IcompleteUser.metadata';
@@ -34,14 +34,15 @@ export class AuthService {
 
   getUserData():Observable<IresponseValidation>{
     // Obtén el token del local storage o de donde lo tengas almacenado
-    const token = localStorage.getItem('token');
+    //const token = localStorage.getItem('token');
 
     // Crea las cabeceras con el token
-    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    //const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //console.log(headers)
     const response= {error:true, message:'Error Inesperado', data:null}
-    return this.http.get<{error:boolean, message:string, data:any}>("http://localhost:4000/auth/users", {headers})
+    return this.http.get<{error:boolean, message:string, data:any}>("http://localhost:4000/users")
     .pipe(
-      map(r =>{
+      map(r =>{ 
         console.log(r)
         response.error=r.error,
         response.data=r.data,

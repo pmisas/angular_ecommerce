@@ -26,6 +26,7 @@ export class NavigationComponent implements OnInit{
           data => {
             this.userData = data; // Asignar los datos del usuario a la variable userData
             // Aquí puedes distribuir los datos del usuario a los diferentes componentes según sea necesario
+            console.log(data)
           }
         );
       }
