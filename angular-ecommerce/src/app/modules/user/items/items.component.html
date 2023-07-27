@@ -1,1 +1,27 @@
-<p>items works!</p>
+<ng-container *ngIf="user !== null">
+    <div class="div" style="max-width: 750px; justify-content: center; margin: auto; margin-top: 30px; font-weight: 400;">
+        <div class="row white header">
+            <div class="col s6 name" style="text-align: center;">
+                <p>nombre</p>
+            </div>
+            <div class="col s3 edit" style="text-align: center;">
+                <p>edit</p>
+            </div>
+            <div class="col s3 delete" style="text-align: center;">
+                <p>delete</p>
+            </div>
+        </div>
+        <div class="row white">
+            <div class="col s6 name" style="text-align: center;">
+                <p>{{user.items[0].name}}</p>
+            </div>
+            <div class="col s3 edit" style="text-align: center;">
+                <a class="waves-effect waves-light btn-small"><i class="material-icons grey-text small-icon">edit</i></a>
+                
+            </div>
+            <div class="col s3 delete" style="text-align: center;">
+                <a class="waves-effect waves-red btn-small"><i class="material-icons grey-text small-icon">delete</i></a>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -13,10 +13,13 @@ export class ItemsComponent implements OnInit{
     private authService: AuthService
   ){}
 
-  private user!: any; 
+  public user!: any; 
   
   ngOnInit(): void {
-    //this.user = this.authService.currentUser
+  
+    this.authService.userData$.subscribe(data => {
+      this.user = data;
+    })
 
   }
 

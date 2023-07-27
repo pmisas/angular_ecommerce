@@ -13,7 +13,10 @@ import { Token } from '@angular/compiler';
 export class AuthService {
   
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isLoggedIn: Observable<boolean> = this.isLoggedInSubject.asObservable();
+  public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+
+  private userDataSubject = new BehaviorSubject<IcompleteUser | null>(null);
+  userData$ = this.userDataSubject.asObservable();
 
   constructor(
     private http:HttpClient,
@@ -21,6 +24,9 @@ export class AuthService {
   ) {
     const token = localStorage.getItem('token');
     this.isLoggedInSubject.next(!!token); // !! convierte el valor a booleano (true si hay token, false si no) 
+    if (token) {
+      this.loadUserData();
+    }
   }
 
   /*
@@ -28,24 +34,41 @@ export class AuthService {
   */
 
   isLoggedInValue():Observable<boolean> {
-    console.log(this.isLoggedIn,'service')
-    return this.isLoggedIn;
+    return this.isLoggedIn$;
   }
 
-  getUserData():Observable<IresponseValidation>{
-    
-    const response= {error:true, message:'Error Inesperado', data:null}
-    return this.http.get<{error:boolean, message:string, data:any}>("http://localhost:4000/users")
-    .pipe(
-      map(r =>{ 
-        console.log(r)
-        response.error=r.error,
-        response.data=r.data,
-        response.message=r.message
-        return response;
-      })
-    )
+  //obtengo los datos del user del api
+  //getUserData():Observable<IresponseValidation>{
+  //  const response= {error:true, message:'Error Inesperado', data:null}
+  //  return this.http.get<{error:boolean, message:string, data:any}>("http://localhost:4000/users")
+  //  .pipe(
+  //    map(r =>{ 
+  //      response.error=r.error,
+  //      response.data=r.data,
+  //      response.message=r.message
+  //      return response;
+  //    })
+  //  )
+  //}
+
+   // Obtengo los datos del usuario del API
+   getUserData(): Observable<IresponseValidation> {
+    return this.http.get<IresponseValidation>("http://localhost:4000/users");
   }
+
+  private loadUserData() {
+    this.getUserData().subscribe(
+      (response) => {
+        if (!response.error && response.data) {
+          this.userDataSubject.next(response.data);
+        }
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
+  }
+
 
   login(data: {
     email: string;
@@ -61,6 +84,7 @@ export class AuthService {
       if(!r.error){
         localStorage.setItem('token', r.data.token);
         this.isLoggedInSubject.next(true);
+        this.loadUserData();
         this.router.navigateByUrl("/home");
       }
       return response

@@ -18,19 +18,16 @@ export class NavigationComponent implements OnInit{
 
   ngOnInit()  {
     // Suscribirse al BehaviorSubject para obtener el valor de isLoggedIn
-    this.authService.isLoggedIn.subscribe(isLoggedIn => {
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
       // Si el usuario está logueado, obtener los datos del usuario
-      if (isLoggedIn) {
-        this.authService.getUserData().subscribe(
-          data => {
-            this.userData = data; // Asignar los datos del usuario a la variable userData
-            // Aquí puedes distribuir los datos del usuario a los diferentes componentes según sea necesario
-            console.log(data)
-          }
-        );
-      }
+      
     });
+
+    this.authService.userData$.subscribe(data => {
+      this.userData = data; 
+    })
+
     M.AutoInit();
   }
 
