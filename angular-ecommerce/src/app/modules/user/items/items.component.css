@@ -1,6 +1,32 @@
+.container-fluid{
+    min-height: calc(100vh - 330px);
+    padding-top: 20px;
+}
+
 .header{
-    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.168);
     margin-bottom: 10px;
     border-radius: 10px;
-    font-weight: 500;
+    font-weight: 400;
+}
+
+.body{
+    border-radius: 5px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.109);
+}
+
+.col{
+    text-align: center;
+}
+
+a{
+    margin-top: 9px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+i{
+    font-size: 15px;
 }

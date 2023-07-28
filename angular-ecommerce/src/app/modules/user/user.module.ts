@@ -4,12 +4,14 @@ import { SharedModule } from '@shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
 import { ItemsComponent } from './items/items.component';
 import { OrderComponent } from './order/order.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
   declarations: [
     ItemsComponent,
-    OrderComponent
+    OrderComponent,
+    EditComponent
   ],
   imports: [
     SharedModule,

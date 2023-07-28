@@ -1,27 +1,32 @@
-<ng-container *ngIf="user !== null">
-    <div class="div" style="max-width: 750px; justify-content: center; margin: auto; margin-top: 30px; font-weight: 400;">
-        <div class="row white header">
-            <div class="col s6 name" style="text-align: center;">
-                <p>nombre</p>
+<div class="container-fluid">
+    <ng-container *ngIf="user !== null">
+        <div class="div" style="max-width: 750px; justify-content: center; margin: auto; font-weight: 400;">
+            <div class="row white header" >
+                <div class="col s6 name">
+                    <p>nombre del producto</p>
+                </div>
+                <div class="col s3 edit" >
+                    <p>editar</p>
+                </div>
+                <div class="col s3 delete" >
+                    <p>eliminar</p>
+                </div>
             </div>
-            <div class="col s3 edit" style="text-align: center;">
-                <p>edit</p>
+            <div class="items" *ngFor="let item of user.items">
+                <div class="row white body">
+                    <div class="col s6 name">
+                        <p>{{item.name}}</p>
+                    </div>
+                    <div class="col s3 edit">
+                        <a class="waves-effect waves-green btn-small" style="background-color: #2e7d32;" [routerLink]="['/user/'+item.id]"><i class="material-icons white-text">edit</i></a>
+                        
+                    </div>
+                    <div class="col s3 delete" style="text-align: center;">
+                        <a class="waves-effect waves-red btn-small" style="background-color: #c62828;"><i class="material-icons white-text">delete</i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col s3 delete" style="text-align: center;">
-                <p>delete</p>
-            </div>
+            
         </div>
-        <div class="row white">
-            <div class="col s6 name" style="text-align: center;">
-                <p>{{user.items[0].name}}</p>
-            </div>
-            <div class="col s3 edit" style="text-align: center;">
-                <a class="waves-effect waves-light btn-small"><i class="material-icons grey-text small-icon">edit</i></a>
-                
-            </div>
-            <div class="col s3 delete" style="text-align: center;">
-                <a class="waves-effect waves-red btn-small"><i class="material-icons grey-text small-icon">delete</i></a>
-            </div>
-        </div>
-    </div>
-</ng-container>
+    </ng-container>
+</div>
