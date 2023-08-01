@@ -11,7 +11,7 @@ import { EditComponent } from './edit/edit.component';
   declarations: [
     ItemsComponent,
     OrderComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     SharedModule,
