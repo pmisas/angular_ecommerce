@@ -78,6 +78,7 @@ export class AuthService {
   return this.http.post<{error:boolean, message:string, data:any}>("http://localhost:4000/auth/login", data)
   .pipe(
     map(r =>{
+      console.log(r)
       response.error=r.error,
       response.data=r.data,
       response.message=r.message
@@ -90,6 +91,7 @@ export class AuthService {
       return response
     }),
     catchError( e =>{
+      console.log(e)
       response.data=e.status
       if(e.status===404){
         response.message="Email no encontrado"
